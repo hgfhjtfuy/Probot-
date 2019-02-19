@@ -1704,7 +1704,6 @@ message.channel.send(`**:moneybag: | ${message.author.username}, has transferrer
 }
 
       });
-        }
       });
     });
       client.on('message', message => {
