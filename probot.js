@@ -1688,13 +1688,7 @@ if(message.content.startsWith(prefix + "daily")) {
       message.channel.awaitMessages(m => m.author.id === message.author.id, {max: 1, time: 10000}).then(c => {
         if(c.first().content === number) {
           m.delete();
-                var mando = message.mentions.users.id;
-      if  (!profile[defineduser.id]) profile[defineduser.id] = {}
-      if (!profile[defineduser.id].credits) profile[defineduser.id].credits = 200;
-      profile[defineduser.id].credits += (+args[0]);
-      profile[sender.id].credits += (-args[0]);
-      let mariam = message.author.username
-message.channel.send(`**:moneybag: | ${message.author.username}, has transferrerd ` + "`" + args[0] + "$` to " + `<@${defineduser.id}>**`)
+          message.channel.send(`**:atm:| ${message.author.username}, قام بتحويل \`${balance}\` لـ ${mention}**`);
           credits[author].credits += (-balance);
           credits[mention.id].credits += (+balance);
           fs.writeFile(path, JSON.stringify(credits, null, 5), function(err) {if(err) console.log(err)});
@@ -1704,6 +1698,12 @@ message.channel.send(`**:moneybag: | ${message.author.username}, has transferrer
         }
       });
     });
+  }
+  if(!args[2]) {
+    if(mention.bot) return message.channel.send(`**:heavy_multiplication_x:| ${message.content.split(' ')[1]} لم يتم العثور على**`);
+    message.channel.send(`**${mention.username}, your :credit_card: balance is **${credits[mention.id].credits}`);
+  }
+ 
   }
   if(!args[2]) {
     if(mention.bot) return message.channel.send(`**:heavy_multiplication_x:| ${message.content.split(' ')[1]} لم يتم العثور على**`);
