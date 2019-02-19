@@ -1669,39 +1669,49 @@ if(message.content.startsWith(prefix + "daily")) {
   }
 
  
- let cont = message.content.slice(prefix.length).split(" ");
-let args = cont.slice(1);
-let sender = message.author
-if(message.content.startsWith(prefix + 'trans')) {
-          if (!args[0]) {
-            message.channel.send(`**Usage: ${prefix}trans @someone amount**`);
-         return;
-           }
-        // We should also make sure that args[0] is a number
-        if (isNaN(args[0])) {
-            message.channel.send(`**Usage: ${prefix}trans @someone amount**`);
-            return; // Remember to return if you are sending an error message! So the rest of the code doesn't run.
-             }
-            let defineduser = '';
-            let firstMentioned = message.mentions.users.first();
-            defineduser = (firstMentioned)
-            if (!defineduser) return message.channel.send(`**Usage: ${prefix}trans @someone amount**`);
-            var mentionned = message.mentions.users.first();
-if (!profile[sender.id]) profile[sender.id] = {}
-if (!profile[sender.id].credits) profile[sender.id].credits = 200;
-fs.writeFile('profile.json', JSON.stringify(profile), (err) => {
-if (err) console.error(err);
-})
-      var mando = message.mentions.users.id;
+ if(message.content.startsWith(prefix + "credit")) {
+  if(args[0] !== `${prefix}credit` && args[0] !== `${prefix}credits`) return;
+ 
+  if(args[2]) {
+    if(isNaN(args[2])) return message.channel.send('**:heavy_multiplication_x:| هذه الخانة يجب ان تتكون من ارقام وليس احرف.**');
+    if(mention.bot) return message.channel.send(`**:heavy_multiplication_x:| ${message.content.split(' ')[1]} لم يتم العثور على**`);
+    if(mention.id === message.author.id) return message.channel.send('**:heavy_multiplication_x:| لا يمكنك تحويل كردت لنفسك**');
+    if(credits[author].credits < balance) return message.channel.send('**:heavy_multiplication_x:| أنت لا تملك هذا القدر من الكردت**');
+    var one = Math.floor(Math.random() * 9) + 1;
+    var two = Math.floor(Math.random() * 9) + 1;
+    var three = Math.floor(Math.random() * 9) + 1;
+    var four = Math.floor(Math.random() * 9) + 1;
+ 
+    var number = `${one}${two}${three}${four}`;
+   
+    message.channel.send(`**:heavy_dollar_sign:| \`${number}\`, أكتب الرقم للأستمرار**`).then(m => {
+      message.channel.awaitMessages(m => m.author.id === message.author.id, {max: 1, time: 10000}).then(c => {
+        if(c.first().content === number) {
+          m.delete();
+                var mando = message.mentions.users.id;
       if  (!profile[defineduser.id]) profile[defineduser.id] = {}
       if (!profile[defineduser.id].credits) profile[defineduser.id].credits = 200;
       profile[defineduser.id].credits += (+args[0]);
       profile[sender.id].credits += (-args[0]);
       let mariam = message.author.username
 message.channel.send(`**:moneybag: | ${message.author.username}, has transferrerd ` + "`" + args[0] + "$` to " + `<@${defineduser.id}>**`)
-}
- 
+          credits[author].credits += (-balance);
+          credits[mention.id].credits += (+balance);
+          fs.writeFile(path, JSON.stringify(credits, null, 5), function(err) {if(err) console.log(err)});
+        } else if(c.first().content !== number) {
+          m.delete();
+          message.channel.send(`** :money_with_wings: | تم الغاء الإرسال**`);
+        }
       });
+    });
+  }
+  if(!args[2]) {
+    if(mention.bot) return message.channel.send(`**:heavy_multiplication_x:| ${message.content.split(' ')[1]} لم يتم العثور على**`);
+    message.channel.send(`**${mention.username}, your :credit_card: balance is **${credits[mention.id].credits}`);
+  }
+ 
+  }
+
  
       client.on('message', message => {
           if(!profile[message.author.id]) profile[message.author.id] ={
