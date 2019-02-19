@@ -1707,7 +1707,6 @@ message.channel.send(`**:moneybag: | ${message.author.username}, has transferrer
         }
       });
     });
-  }
       client.on('message', message => {
           if(!profile[message.author.id]) profile[message.author.id] ={
               points: 0,
