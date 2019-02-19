@@ -1667,8 +1667,6 @@ if(message.content.startsWith(prefix + "daily")) {
     message.channel.send(`**:stopwatch: | ${message.author.username}, your daily :yen: credits refreshes ${moment().endOf('day').fromNow()}**`)
 }
   }
-
- 
  if(message.content.startsWith(prefix + "credit")) {
   if(args[0] !== `${prefix}credit` && args[0] !== `${prefix}credits`) return;
  
@@ -1695,10 +1693,7 @@ if(message.content.startsWith(prefix + "daily")) {
         } else if(c.first().content !== number) {
           m.delete();
           message.channel.send(`** :money_with_wings: | تم الغاء الإرسال**`);
-        }
-      });
-    });
-  }
+		
       var mando = message.mentions.users.id;
       if  (!profile[defineduser.id]) profile[defineduser.id] = {}
       if (!profile[defineduser.id].credits) profile[defineduser.id].credits = 200;
@@ -1707,9 +1702,12 @@ if(message.content.startsWith(prefix + "daily")) {
       let mariam = message.author.username
 message.channel.send(`**:moneybag: | ${message.author.username}, has transferrerd ` + "`" + args[0] + "$` to " + `<@${defineduser.id}>**`)
 }
- 
+
       });
- 
+        }
+      });
+    });
+  }
       client.on('message', message => {
           if(!profile[message.author.id]) profile[message.author.id] ={
               points: 0,
