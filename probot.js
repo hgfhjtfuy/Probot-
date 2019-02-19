@@ -1426,8 +1426,10 @@ message.author.sendMessage(`
 ╰━━━┻╯╰╯╰┻━╮┣━━┻╯╰┻━━━┻━━┻━╯
 ╱╱╱╱╱╱╱╱╱╭━╯┃
 ╱╱╱╱╱╱╱╱╱╰━━╯
+
 {للعلم فقط هناك اشياء اخري}
- الأوامر العامة 
+
+الأوامر العامة 
  #color   : لتغيير لونك في السيرفر
  #colors  : قائمة الألوان
   #id   : الهوية
@@ -1445,7 +1447,7 @@ message.author.sendMessage(`
  #unmute
  #clear
   #points <MENTION> <POINTS> 
-  #id  : #id اعدادات الأمر
+  !#id  : #id اعدادات الأمر
   #server  : معلومات السيرفر
   #roles  : معرفة رولات السيرفر
 
@@ -1469,7 +1471,7 @@ if(message.content.startsWith(prefix  +  'warn'))  {
   let  reportembed  =  new  Discord.RichEmbed()
   .setTitle(`**New  Warned User !**`)
 .addField("**-  Warned  User:**",  `[${user}  with  ID  ${user.id}]`)//by  OrochiX
-.addField('**-  Warned  By:**',`[${message.author.tag} with id ${message.author.id}]`)//by  OrochiX
+.addField('**-  Warned  By:**',`[${message.author.tag} with id ${message.author.id}]`)
 .addField('**-  Reason:**',  `[${reason}]`,  true)
 .addField("**-  Warned  in:**",`[${message.channel.name}]`)
 .addField("**-  Time & Date:**",`[${message.createdAt}]`)
