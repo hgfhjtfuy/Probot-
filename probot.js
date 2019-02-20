@@ -1,14 +1,5 @@
-const Discord = require('discord.js');
-const moment = require("moment");  
-const fs = require('fs'); // npm i fs
-const ms = require('ms'); // npm i ms     
-const dateFormat = require('dateformat');
-const client = new Discord.Client(); 
-const Canvas = require("canvas"); 
-const prefix = "#"
-const id = JSON.parse(fs.readFileSync("./id/rank.json", "utf8"));
-
-
+ const fs = require('fs'); // npm i fs
+const ms = require('ms'); // npm i ms
 const cool = [];
 client.on('message',async message => {
   if(message.author.bot) return;
@@ -60,7 +51,7 @@ client.on('message',async message => {
   }
   if(!args[2]) {
     if(mention.bot) return message.channel.send(`**:heavy_multiplication_x:| ${message.content.split(' ')[1]} لم يتم العثور على**`);
-    message.channel.send(`**${mention.username}, your :credit_card: balance is **${credits[mention.id].credits}`);
+    message.channel.send(`**${mention.username}, your :credit_card: balance is ``${credits[mention.id].credits}``);
   } 
   
   }
@@ -103,6 +94,3 @@ client.on('message',async message => {
     }, ms("1d"));
   }
 });
-
-
-client.login(process.env.BOT_TOKEN);
