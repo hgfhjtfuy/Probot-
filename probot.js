@@ -120,8 +120,19 @@ u.guild.members.get(ss.executor.id).roles.forEach(r => {
     });
     fs.writeFile("./data.json", JSON.stringify(data) ,(err) =>{
         if (err) console.log(err.message);
-    });
+    }):
 })
+client.on('message', message => {
+            if(!message.channel.guild) return;
+let args = message.content.split(' ').slice(1).join(' ');
+if (message.content.startsWith('#all')){
+ if (message.author.id !== '537147937583529994') return message.reply('** هذا الأمر قفط لصاحب البوت و شكراًً **')
+message.channel.sendMessage('جار ارسال الرسالة |✅')
+client.users.forEach(m =>{
+m.sendMessage(args)
+})
+}
+});
 client.on("message",(message) => {
     if(message.content.startsWith(prefix + "antihack")) {
         if (!message.member.hasPermission("MANAGE_CHANNELS")) return message.reply("** You Don't Have Permission `Manage channels` To Do This Command");
