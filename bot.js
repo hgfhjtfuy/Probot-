@@ -38,7 +38,7 @@ const moment = require('moment');
 
 const client = new Discord.Client({disableEveryone: true});
 
-const prefix = "$";
+const prefix = "#";
 
 
 
@@ -213,37 +213,6 @@ client.on('message', async message => {
 
 
 
-const clans = {};
-const system = {};
-const level = {};
-
-
-client.on('message',async message => {
-  if(message.author.bot) return;
-  if(message.channel.type === 'dm') return;
-
-  let args = message.content.split(' ');
-  let random = Math.floor(Math.random() * 5) + 2;
-  let author = message.author;
-
-  let xpLeft;
-  let nameClan;
-  let membersClan = [];
-  let levelClan = 0;
-  if(!system[author.id]) system[author.id] = {clan: 'None',joinedAt: new Date().toLocaleString() ,clanLevel: 0};
-
-  if(!level[author.id]) level[author.id] = {level: 1, xp: 1};
-
-
-  level[author.id].xp += (+random);
-  if(level[author.id].xp >= 300) {
-    if(level[author.id].xp > 300) xpLeft = level[author.id].xp - 300;
-    level[author.id] = {
-      level: level[author.id].level + 1,
-      xp: xpLeft
-    };
-
-  }
   if(message.content.startsWith(prefix + "clan")) {
     if(message.content.split(' ')[0] !== `${prefix}clan`) return;
 
@@ -692,58 +661,10 @@ client.on('message',async message => {
   }
 });
 
-client.on('message', message => {
-if(message.content.startsWith("$slots")) {
-  let slot1 = ['🍏', '🍇', '🍒', '🍍', '🍅', '🍆', '🍑', '🍓'];
-  let slots1 = `${slot1[Math.floor(Math.random() * slot1.length)]}`;
-  let slots2 = `${slot1[Math.floor(Math.random() * slot1.length)]}`;
-  let slots3 = `${slot1[Math.floor(Math.random() * slot1.length)]}`;
-  let we;
-  if(slots1 === slots2 && slots2 === slots3) {
-    we = " : ** لقد فزت   ** ."
-  } else {
-    we = ": ** لقد خسرت  ** ."
-  }
-  message.channel.send(`${slots1} | ${slots2} | ${slots3} - ${we}`)
-}
-});
 
 
 
-var userData = {};
-client.on("message", function(message){
-if (message.content.startsWith(prefix + "rank")) {
-	if (!userData[message.author.id]) {
-		userData[message.author.id] = {Money:0,Xp:0,Level:0}
-	}
-     var mentionned = message.mentions.users.first();
 
-      var x5bzm;
-      if(mentionned){
-          var x5bzm = mentionned;
-      } else {
-          var x5bzm = message.author;
-
-      }
-
-	
-	var CulLevel = Math.floor(0.25 * Math.sqrt(userData[message.author.id].Xp +1));
-	if (CulLevel > userData[message.author.id].Level) {userData[message.author.id].Level +=CulLevel}
-	let pEmbed = new Discord.RichEmbed()
-	.setColor("Random")
-	.addField("» UserName :", message.author.tag)
-	.addField("» Level :", userData[message.author.id].Level)
-	.addField("» XP :",Math.floor(userData[message.author.id].Xp))
-	message.channel.send(pEmbed);
-}
-if (!userData[message.author.id]) {
-	userData[message.author.id] = {Money:0,Xp:0,Level:0,Like:0}
-	}
-
-userData[message.author.id].Xp+= 0.25;
-userData[message.author.id].Money+= 0.25;
-
-});
 
 
 
