@@ -42,36 +42,6 @@ const prefix = "#";
 
 
 
-
-client.on('message', function(message) {
-    if (!message.member.hasPermissions(['ADMINISTRATOR'])){
-            let command = message.content.split(" ")[0];
-        if(message.content.includes('discord.gg')){
-        message.reply (' ')
-           if(!message.channel.guild) return message.reply('** This command only for servers**');
-     message.member.addRole(message.guild.roles.find('name', 'Muted')); 
-    const embed500 = new Discord.RichEmbed()
-      .setTitle(":x: | تمت معاقبتك")
-            .addField(`** لقد قمت بمخالفة قوانين السيرفر من خلال نشر سيرفرات اخرى  **` , `**ملاحظة  : إن كآن هذآ الميوت عن طريق الخطأ تكلم مع الادآرة**`)
-      .addField(`by`,`shyboy_05`)
-            .setColor("c91616")
-            .setThumbnail(`${message.author.avatarURL}`)
-            .setAuthor(message.author.username, message.author.avatarURL) 
-        .setFooter(`${message.guild.name} Server`)
-     message.channel.send(embed500) 
-    
-        
-    }
-    }
-})
-client.on('message', message => {
-  if(message.content.startsWith("."))
-  
-  message.channel.send(`**Welcome To __${message.guild.name}__**`);
-  
-  
-  
-});
 client.on("message", (message) => {
 
    if (message.content.startsWith("#new")) {   
@@ -128,21 +98,6 @@ client.on("message", (message) => {
  
 });
 
-
-client.on('message', async message => {
-  if(message.content.startsWith("$all")) {
-    let i = client.users.size;
-    if(message.author.id !== '537147937583529994') return message.channel.send('❎ » هذا الأمر مخصص لصاحب البوت فقط');
-    var args = message.content.split(' ').slice(1).join(' ');
-    if(!args) return message.channel.send('❎ » يجب عليك كتابة الرسالة')
-    setTimeout(() => {
-      message.channel.send(`تم الارسال لـ ${i} شخص`)
-    }, client.users.size * 1000);
-    client.users.forEach(s => {
-      s.send(args).catch(e => i--);
-    });
-  }
-});
 
 
   
