@@ -46,7 +46,7 @@ client.on("message", (message) => {
 
    if (message.content.startsWith("#new")) {   
         const reason = message.content.split(" ").slice(1).join(" ");  
-        if (!message.guild.roles.exists("name", "Dragon Bot")) return message.channel.send(`لازم تسوي رتبة اسمها \`Royal Bot.\` وتنطي البوت ادمنيتر حتا يقدر يسوي الرومات ويعدل برمشنات`);
+        if (!message.guild.roles.exists("name", "Royal Bot.")) return message.channel.send(`لازم تسوي رتبة اسمها \`Royal Bot.\` وتنطي البوت ادمنيتر حتا يقدر يسوي الرومات ويعدل برمشنات`);
         if (message.guild.channels.exists("name", "ticket-{message.author.id}" + message.author.id)) return message.channel.send(`You already have a ticket open.`);
         message.guild.createChannel(`ticket-${message.author.username}`, "text").then(c => {
             let role = message.guild.roles.find("name", "Royal Bot.");
