@@ -166,7 +166,15 @@ client.on('messageUpdate', (oldMessage, newMessage) => {
 
 	logChannel.send(messageUpdate);
 });
-
+client.on('message', message => {
+  if(message.content.includes('discord.gg')){
+                                          if(!message.channel.guild) return;
+      if (!message.member.hasPermissions(['ADMINISTRATOR'])){
+      message.delete()
+  return message.reply(`** Not allowed to advertising Here :angry: ! **`)
+  }
+}
+});
 
 client.on('roleCreate', role => {
 
