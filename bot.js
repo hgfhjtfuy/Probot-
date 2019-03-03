@@ -807,16 +807,6 @@ if(message.author.bot) return;
   if(!sWlc[message.guild.id]) sWlc[message.guild.id] = {
     channel: "welcome"
 }
-const channel = sWlc[message.guild.id].channel
-  if (message.content.startsWith(prefix + "setWelcomer")) {
-    if(!message.member.hasPermission(`MANAGE_GUILD`)) return;
-    let newChannel = message.content.split(' ').slice(1).join(" ")
-    if(!newChannel) return message.reply(`**${prefix}setWelcome <channel name>**`)
-    sWlc[message.guild.id].channel = newChannel
-    message.channel.send(`**${message.guild.name}'s channel has been changed to ${newChannel}**`);
-  }
-});
-
 
 
 client.on("guildMemberAdd", member => {
