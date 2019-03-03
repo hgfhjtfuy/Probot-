@@ -798,16 +798,6 @@ if (err) console.error(err)
 
 
 
-const sWlc = {}
-const premium = ['537147937583529994', '', '', '']
-client.on('message', message => {
-var prefix = "#";
-if(message.channel.type === "dm") return;
-if(message.author.bot) return;
-  if(!sWlc[message.guild.id]) sWlc[message.guild.id] = {
-    channel: "welcome"
-}
-
 
 client.on("guildMemberAdd", member => {
       if(!sWlc[member.guild.id]) sWlc[member.guild.id] = {
