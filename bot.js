@@ -38,7 +38,7 @@ const moment = require('moment');
 
 const client = new Discord.Client({disableEveryone: true});
 
-const prefix = "#";
+const prefix = "!";
 
 
 
